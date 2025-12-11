@@ -12,20 +12,18 @@ st.set_page_config(page_title="Heart Disease Risk", page_icon="🫀")
 
 @st.cache_resource
 def load_artifacts():
-    # Load Graph Data
-    graph = torch.load('test_graph_data.pt')
-
+    graph = torch.load('test_graph_data.pt', weights_only=False)
+    
     # Load Mappings
     with open('node_mapping.pkl', 'rb') as f:
         mapping = pickle.load(f)
-
+        
     # Load Model
-    # Note: We must match the dimensions from your config/training
-    # Assuming hidden_channels=32 and input_dim=13 based on your report
-    model = InductiveGCN(in_channels=13, hidden_channels=32, out_channels=2)
-    model.load_state_dict(torch.load('best_bipartite_model.pth', map_location=torch.device('cpu')))
+    model = InductiveGCN(in_channels=13, hidden_channels=32, out_channels=2) 
+    
+    model.load_state_dict(torch.load('best_bipartite_model.pth', map_location=torch.device('cpu'), weights_only=False))
     model.eval()
-
+    
     return model, graph, mapping
 
 
