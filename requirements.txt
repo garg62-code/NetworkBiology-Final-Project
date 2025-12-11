@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+scikit-learn
+networkx
+torch --index-url https://download.pytorch.org/whl/cpu
+torch-scatter
+torch-sparse
+torch-cluster
+torch-spline-conv
+torch-geometric
