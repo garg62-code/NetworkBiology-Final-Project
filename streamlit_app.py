@@ -19,7 +19,7 @@ def load_artifacts():
         mapping = pickle.load(f)
         
     # Load Model
-    model = InductiveGCN(in_channels=13, hidden_channels=32, out_channels=2) 
+    model = InductiveGCN(in_channels=13, hidden_channels=16, out_channels=2) 
     
     model.load_state_dict(torch.load('best_bipartite_model.pth', map_location=torch.device('cpu'), weights_only=False))
     model.eval()
